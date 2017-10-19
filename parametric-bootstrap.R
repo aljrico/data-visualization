@@ -57,8 +57,6 @@ for(m in 1:n1){
 	npop <- ((n1+1)*(n2+1)/(x+1))-1
 	vector[m] <- N/mean(npop)-1
 	mvector[m] <- m
-	
-	
 }
 
 ggplot()+
@@ -73,3 +71,40 @@ x <- 1-rpois(1000000,3.15)+9
 hist(x)
 mean(x)
 sd(x)
+
+
+# Real Example: Capture Re-capture almonds --------------------------------------
+
+# 17 fishes, mark 10, recapture 20, m marked from recaptured
+
+n1 <- 10 # Marked almonds
+n2 <- 20 # Recaptured almonds
+m <- 1
+
+N <- ((n1+1)*(n2+1)/(m+1))-1
+N
+
+x <- rhyper(1000, 5, N-n1, n2) # Hypergeometric distribution
+
+npop <- ((n1+1)*(n2+1)/(x+1))-1 # Chapman estimator
+mean(npop)
+1.96*sd(npop)
+quantile(npop, probs=c(0.025, 0.975))
+
+vector <- c()
+mvector <- c()
+m<- 1
+for(m in 1:n1){
+	N <- ((n1+1)*(n2+1)/(m+1))-1
+	x <- rhyper(1000, n1, N-n1, n2)
+	npop <- ((n1+1)*(n2+1)/(x+1))-1
+	vector[m] <- N/mean(npop)-1
+	mvector[m] <- m
+}
+
+real <- 133
+
+N
+mean(npop)
+real
+
