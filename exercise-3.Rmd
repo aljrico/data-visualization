@@ -1,0 +1,20 @@
+---
+title: "Exercise 3"
+output: html_notebook
+---
+
+Keating (2002) studied the annual numbers of females with cubsof-the-year
+in the Yellowstone grizzly bear population, from 1986 to
+2001. Shown in the next Table is the number of unique females with
+cubs-of-the-year that were seen exactly j times during the year 1998.
+
+```{r}
+
+#Sights of unique females with cubs-of-the-year (1998).
+sights <- c(1,2,3,4,5,6,7)
+nbears <- c(11,13,5,1,1,0,2)
+
+nbears[1]^2/(2*nbears[2])
+```
+
+This is a multiple capture-recapture problem where the main objective is to know the total number of females.
