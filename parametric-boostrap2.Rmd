@@ -1,0 +1,27 @@
+---
+title: "Parametric Bootstrap"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+Censored Data
+
+Type II censored data: It occurs when a life test is
+terminated exactly when a pre-specified number of failures have occurred. The remaining units have not yet failed. If n units were on test, and the pre-specified number of failures is r (where r is less than or equal to n), then the test ends at t r = the time of the r-th failure. 
+
+For instance, this sample was censored after 7 failures and the remaining units were 3.
+
+The times to failure were:
+```{r}
+n <- 10
+bulbs <- c(125,189,210,356,468,550,610)
+r <- length(bulbs)
+```
+
+Estimate the parameter:
+$$\theta = \frac{\sum_{i=1}^r t_{(i)} + (n-r)t_{(r)}}{r}$$
+
+```{r}
+theta <- (sum(bulbs) + (n-r)*max(bulbs))/(r)
+```
